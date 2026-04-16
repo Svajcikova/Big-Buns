@@ -1,0 +1,188 @@
+import { db, doc, onSnapshot } from "./firebase.js";
+
+let cart = [];
+let currentItem = null;
+let orderId = null;
+
+let stripe = Stripe("pk_test_TVŮJ_KEY");
+let elements;
+
+/* DATA (TVŮJ MENU) */
+const data = {
+ burgers: [
+  {name:"Buns & Bacon",price:169,best:true,img:"https://images.unsplash.com/photo-1550547660-d9450f859349"},
+  {name:"Big Buns Inferno",price:169,img:"https://images.unsplash.com/photo-1600891964599-f61ba0e24092"},
+  {name:"Chicken Crunch",price:159,img:"https://images.unsplash.com/photo-1606755962773-d324e2a13086"},
+  {name:"Green Beast",price:159,img:"https://images.unsplash.com/photo-1604908176997-4310c4f8f3e1"}
+ ],
+
+ premium: [
+  {name:"Big Buns Fresh Bite",price:199,img:"https://images.unsplash.com/photo-1550547660-d9450f859349"},
+  {name:"Double Trouble",price:239,best:true,img:"https://images.unsplash.com/photo-1561758033-d89a9ad46330"},
+  {name:"Buns & Bacon Deluxe",price:229,img:"https://images.unsplash.com/photo-1550547660-d9450f859349"},
+  {name:"BLACK EMBER",price:229,img:"https://images.unsplash.com/photo-1568901346375-23c9450c58cd"}
+ ],
+
+ sides: [
+  {name:"Hranolky",price:59},
+  {name:"Bramborové mřížky",price:59},
+  {name:"Cibulové kroužky",price:79},
+  {name:"Mozzarella sticks",price:79},
+  {name:"Camembert kousky",price:79}
+ ],
+
+ sauces: [
+  {name:"Jogurtovo-česnekový",price:30},
+  {name:"Sriracha mayo",price:30},
+  {name:"Majonéza",price:30},
+  {name:"Medovo-hořčičná",price:30},
+  {name:"Citronovo-pepřová",price:30}
+ ],
+
+ drinks: [
+  {name:"Coca Cola",price:49},
+  {name:"Coca Cola Zero",price:49},
+  {name:"Coca Cola Cherry",price:49},
+  {name:"Pepsi Zero Cherry",price:49},
+  {name:"Sprite",price:49},
+  {name:"Fanta Zero",price:49}
+ ]
+};
+
+/* RENDER */
+function render(category){
+ let html = '<div class="grid">';
+
+ data[category].forEach(item=>{
+  html += `
+  <div class="card" onclick="openDetail('${item.name}',${item.price})">
+    ${item.img ? `<img src="${item.img}">` : ""}
+    <div class="cardBody">
+      ${item.name} ${item.best ? '<span class="badge">TOP</span>' : ""}
+      <br>${item.price} Kč
+    </div>
+  </div>`;
+ });
+
+ html += "</div>";
+
+ document.getElementById("content").innerHTML = html;
+}
+
+/* TAB */
+window.switchTab = function(cat,el){
+ document.querySelectorAll('.tab').forEach(t=>t.classList.remove("active"));
+ el.classList.add("active");
+ render(cat);
+}
+
+/* DETAIL */
+window.openDetail = function(name,price){
+ currentItem = {name,price};
+
+ document.getElementById("detail").classList.add("active");
+ document.getElementById("detailName").innerText = name;
+ document.getElementById("detailPrice").innerText = price+" Kč";
+}
+
+window.closeDetail = function(){
+ document.getElementById("detail").classList.remove("active");
+}
+
+/* CART */
+window.addToCart = function(){
+
+ let finalPrice = currentItem.price;
+ let finalName = currentItem.name;
+
+ // MENU (+79)
+ if(confirm("Chceš menu? (hranolky + nápoj +79 Kč)")){
+   finalPrice += 79;
+   finalName += " MENU";
+ }
+
+ cart.push({name:finalName,price:finalPrice});
+
+ renderCart();
+ closeDetail();
+ toast();
+}
+
+function renderCart(){
+ let total=0, html="";
+
+ cart.forEach((i,idx)=>{
+  total+=i.price;
+
+  html += `
+  <div class="cartItem">
+    ${i.name} ${i.price} Kč
+    <span onclick="removeItem(${idx})">✖</span>
+  </div>`;
+ });
+
+ document.getElementById("items").innerHTML = html;
+ document.getElementById("total").innerText = total+" Kč";
+}
+
+window.removeItem = function(i){
+ cart.splice(i,1);
+ renderCart();
+}
+
+window.toggleCart = function(){
+ document.getElementById("cart").classList.toggle("active");
+}
+
+/* TOAST */
+function toast(){
+ let t=document.getElementById("toast");
+ t.classList.add("show");
+ setTimeout(()=>t.classList.remove("show"),800);
+}
+
+/* 💳 PLATBA */
+window.startPayment = async function(){
+
+ const res = await fetch("http://localhost:3000/create-payment",{
+   method:"POST",
+   headers:{"Content-Type":"application/json"},
+   body:JSON.stringify({items:cart})
+ });
+
+ const dataRes = await res.json();
+ orderId = dataRes.orderId;
+
+ elements = stripe.elements({
+   clientSecret: dataRes.clientSecret
+ });
+
+ const el = elements.create("payment");
+ el.mount("#payment-element");
+}
+
+/* 💳 CONFIRM */
+window.confirmPayment = async function(){
+
+ await stripe.confirmPayment({
+   elements,
+   confirmParams:{
+     return_url: window.location.href
+   }
+ });
+
+ startTracking();
+}
+
+/* 📡 TRACKING */
+function startTracking(){
+
+ onSnapshot(doc(db,"orders",orderId),(snap)=>{
+   const data = snap.data();
+
+   alert("Status objednávky: " + data.status);
+ });
+}
+
+/* INIT */
+render("burgers");
