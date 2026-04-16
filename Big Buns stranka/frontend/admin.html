@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<body style="background:black;color:white">
+
+<h1>ADMIN</h1>
+<div id="orders"></div>
+
+<script type="module">
+import { db, collection, onSnapshot } from "./firebase.js";
+
+onSnapshot(collection(db,"orders"), snap=>{
+ const el=document.getElementById("orders");
+ el.innerHTML="";
+
+ snap.forEach(d=>{
+  const data=d.data();
+
+  const div=document.createElement("div");
+
+  div.innerHTML=`
+   ${data.items.map(i=>i.name).join(", ")}
+   <button onclick="set('${d.id}','preparing')">Příprava</button>
+   <button onclick="set('${d.id}','ready')">Hotovo</button>
+   <hr>
+  `;
+
+  el.appendChild(div);
+ });
+});
+
+window.set = async(id,status)=>{
+ await fetch("http://localhost:3000/update-status",{
+  method:"POST",
+  headers:{"Content-Type":"application/json"},
+  body:JSON.stringify({id,status})
+ });
+};
+</script>
+
+</body>
+</html>

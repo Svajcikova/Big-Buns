@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Big Buns</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="logo">BIG BUNS</div>
+
+<!-- TABS -->
+<div class="tabs">
+<div class="tab active" onclick="switchTab('burgers',this)">Burgery</div>
+<div class="tab" onclick="switchTab('premium',this)">Premium</div>
+<div class="tab" onclick="switchTab('sides',this)">Přílohy</div>
+<div class="tab" onclick="switchTab('drinks',this)">Nápoje</div>
+</div>
+
+<!-- CONTENT -->
+<div id="content"></div>
+
+<!-- CART BUTTON -->
+<div class="cartBtn" onclick="toggleCart()">🛒</div>
+
+<!-- CART -->
+<div class="cart" id="cart">
+<h2>Košík</h2>
+<div id="payment-section" style="padding:10px">
+  <div id="payment-element"></div>
+  <div class="btn" onclick="confirmPayment()">Zaplatit</div>
+</div>
+
+<script src="https://js.stripe.com/v3/"></script>
+
+<!-- STICKY -->
+<div class="sticky">
+<div id="total">0 Kč</div>
+<div class="btn" onclick="toggleCart()">Objednat</div>
+</div>
+
+<!-- DETAIL -->
+<div class="detail" id="detail">
+<img id="detailImg">
+<h2 id="detailName"></h2>
+<p id="detailPrice"></p>
+
+<div class="btn" onclick="addToCart()">Přidat</div>
+<div class="btn" onclick="closeDetail()">Zavřít</div>
+</div>
+
+<div class="toast" id="toast">Přidáno</div>
+
+<script src="app.js"></script>
+
+</body>
+</html>

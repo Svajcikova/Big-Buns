@@ -1,0 +1,151 @@
+import { db, doc, onSnapshot } from "./firebase.js";
+
+let orderId = null;
+let stripe = Stripe("pk_test_TVŮJ_KEY");
+let elements;
+
+let cart = [];
+let currentItem = null;
+
+import { db, doc, onSnapshot } from "./firebase.js";
+
+let orderId = null;
+let stripe = Stripe("pk_test_TVŮJ_KEY");
+let elements;
+
+/* DATA */
+const data = {
+ burgers: [
+  {name:"Buns & Bacon",price:169,best:true,img:"https://images.unsplash.com/photo-1550547660-d9450f859349"},
+  {name:"Chicken Crunch",price:159,img:"https://images.unsplash.com/photo-1606755962773-d324e2a13086"}
+ ],
+ premium: [
+  {name:"Double Trouble",price:239,img:"https://images.unsplash.com/photo-1561758033-d89a9ad46330"}
+ ],
+ sides: [
+  {name:"Hranolky",price:59},
+  {name:"Kroužky",price:79}
+ ],
+ drinks: [
+  {name:"Coca Cola",price:49},
+  {name:"Sprite",price:49}
+ ]
+};
+
+/* RENDER */
+function render(category){
+ let html = '<div class="grid">';
+
+ data[category].forEach(item=>{
+  html += `
+  <div class="card" onclick="openDetail('${item.name}',${item.price})">
+    ${item.img ? `<img src="${item.img}">` : ""}
+    <div class="cardBody">
+      ${item.name} ${item.best ? '<span class="badge">TOP</span>' : ""}
+      <br>${item.price} Kč
+    </div>
+  </div>`;
+ });
+
+ html += "</div>";
+
+ document.getElementById("content").innerHTML = html;
+}
+
+/* TAB */
+function switchTab(cat,el){
+ document.querySelectorAll('.tab').forEach(t=>t.classList.remove("active"));
+ el.classList.add("active");
+ render(cat);
+}
+
+/* DETAIL */
+function openDetail(name,price){
+ currentItem = {name,price};
+
+ document.getElementById("detail").classList.add("active");
+ document.getElementById("detailName").innerText = name;
+ document.getElementById("detailPrice").innerText = price+" Kč";
+}
+function closeDetail(){
+ document.getElementById("detail").classList.remove("active");
+}
+
+async function startPayment(){
+
+ const res = await fetch("http://localhost:3000/create-payment",{
+   method:"POST",
+   headers:{"Content-Type":"application/json"},
+   body:JSON.stringify({items:cart})
+ });
+
+ const data = await res.json();
+ orderId = data.orderId;
+
+ elements = stripe.elements({
+   clientSecret: data.clientSecret
+ });
+
+ const el = elements.create("payment");
+ el.mount("#payment-element");
+}
+
+/* CART */
+function addToCart(){
+ cart.push(currentItem);
+ renderCart();
+ closeDetail();
+ toast();
+}
+
+function renderCart(){
+ let total=0, html="";
+
+ cart.forEach((i,idx)=>{
+  total+=i.price;
+  html += `<div class="cartItem">${i.name} ${i.price} Kč <span onclick="removeItem(${idx})">✖</span></div>`;
+ });
+
+ document.getElementById("items").innerHTML = html;
+ document.getElementById("total").innerText = total+" Kč";
+}
+
+function removeItem(i){
+ cart.splice(i,1);
+ renderCart();
+}
+
+function toggleCart(){
+ document.getElementById("cart").classList.toggle("active");
+}
+
+/* TOAST */
+function toast(){
+ let t=document.getElementById("toast");
+ t.classList.add("show");
+ setTimeout(()=>t.classList.remove("show"),800);
+}
+
+async function confirmPayment(){
+
+ await stripe.confirmPayment({
+   elements,
+   confirmParams:{
+     return_url: window.location.href
+   }
+ });
+
+ startTracking();
+}
+function startTracking(){
+
+ onSnapshot(doc(db,"orders",orderId),(snap)=>{
+   const data = snap.data();
+
+   alert("Status: " + data.status);
+ });
+}
+
+
+/* INIT */
+render("burgers");

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<body style="background:black;color:white">
+
+<h1>KUCHYŇ</h1>
+<div id="list"></div>
+
+<script type="module">
+import { db, collection, onSnapshot } from "./firebase.js";
+
+onSnapshot(collection(db,"orders"), snap=>{
+ const el=document.getElementById("list");
+ el.innerHTML="";
+
+ snap.forEach(d=>{
+  const data=d.data();
+
+  if(data.status==="new"){
+   const div=document.createElement("div");
+
+   div.style.border="2px solid red";
+   div.style.margin="10px";
+   div.style.padding="10px";
+
+   div.innerHTML=`
+    🔥 NOVÁ OBJEDNÁVKA<br>
+    ${data.items.map(i=>i.name).join(", ")}
+   `;
+
+   el.appendChild(div);
+  }
+ });
+});
+</script>
+
+</body>
+</html>

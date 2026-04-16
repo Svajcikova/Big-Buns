@@ -1,0 +1,13 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore, doc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "TVUJ_API_KEY",
+  authDomain: "TVUJ.firebaseapp.com",
+  projectId: "TVUJ"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+export { db, doc, onSnapshot };
