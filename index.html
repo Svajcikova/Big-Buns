@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BIG BUNS</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="logo">BIG BUNS</div>
+
+<div class="hero">
+Street burgery s charakterem
+<div class="sub">⭐ 4.8 • dnes 23 objednávek</div>
+</div>
+
+<div class="tabs">
+<div class="tab active" onclick="switchTab('burgers',this)">Burgery</div>
+<div class="tab" onclick="switchTab('premium',this)">Premium</div>
+<div class="tab" onclick="switchTab('menu',this)">Menu</div>
+<div class="tab" onclick="switchTab('sides',this)">Přílohy</div>
+<div class="tab" onclick="switchTab('drinks',this)">Nápoje</div>
+<div class="tab" onclick="switchTab('sauces',this)">Omáčky</div>
+</div>
+
+<div id="content"></div>
+
+<div class="cartBtn" onclick="toggleCart()">🛒</div>
+
+<div class="cart" id="cart">
+<h2>Košík</h2>
+<div id="items"></div>
+<button onclick="startCheckout()">Objednat</button>
+</div>
+
+<div class="sticky">
+<div id="total">0 Kč</div>
+<button onclick="toggleCart()">Objednat →</button>
+</div>
+
+<div class="detail" id="detail">
+<img id="detailImg">
+<h2 id="detailName"></h2>
+<p id="detailDesc"></p>
+<p id="detailPrice"></p>
+
+<div id="menuOptions"></div>
+
+<button onclick="addToCart()">Přidat</button>
+<button onclick="closeDetail()">Zavřít</button>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script src="app.js"></script>
+
+</body>
+</html>
