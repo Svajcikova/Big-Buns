@@ -1,108 +1,80 @@
 <!DOCTYPE html>
 <html lang="cs">
+
 <head>
 
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="viewport"
+  content="width=device-width, initial-scale=1.0">
 
   <title>BIG BUNS</title>
 
-  <!-- FONTS -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet"
+  href="style.css">
 
 </head>
 
 <body>
 
-<!-- ======================================== -->
-<!-- LOADER -->
-<!-- ======================================== -->
-
-<div class="loader" id="loader">
-
-  <div class="loader-logo">
-    BIG BUNS
-  </div>
-
-</div>
-
-<!-- ======================================== -->
+<!-- ========================================= -->
 <!-- NAVBAR -->
-<!-- ======================================== -->
+<!-- ========================================= -->
 
-<header class="navbar">
+<nav class="navbar">
 
   <div class="logo">
-
     BIG BUNS
-
   </div>
 
   <div class="nav-right">
 
-    <div class="delivery-pill">
-
+    <div class="delivery">
       🔥 Rozvoz do 45 min
-
     </div>
 
-    <div class="cart-icon" onclick="toggleCart()">
+    <div class="cart">
 
       🛒
 
-      <span id="cartCount">
+      <div
+      id="cart-count"
+      class="cart-count">
+
         0
-      </span>
+
+      </div>
 
     </div>
 
   </div>
 
-</header>
+</nav>
 
-<!-- ======================================== -->
+<!-- ========================================= -->
 <!-- HERO -->
-<!-- ======================================== -->
+<!-- ========================================= -->
 
 <section class="hero">
 
-  <!-- VIDEO -->
   <div class="hero-image"></div>
 
-    <source src="hero.jpg" type="video/mp4">
-
-  <div class="hero-image"></div>
-
-  <!-- OVERLAY -->
-  <div class="hero-overlay"></div>
-
-  <!-- CONTENT -->
   <div class="hero-content">
 
-    <div class="hero-badge">
+    <h1 class="hero-title">
 
-      🔥 PREMIUM STREETFOOD
-
-    </div>
-
-    <h1>
-
-      BIG BUNS
+      BIG<br>
+      BUNS
 
     </h1>
 
-    <p>
+    <p class="hero-sub">
 
       SORRY, tady tvoje dieta končí..
 
     </p>
 
-    <button class="hero-btn" onclick="scrollToMenu()">
+    <button class="order-btn">
 
       🍔 ORDER NOW
 
@@ -110,63 +82,12 @@
 
   </div>
 
-  <!-- FLOATING GLASS -->
-  <div class="hero-glass">
-
-    <div class="glass-title">
-
-      🍔 Dnes bestseller
-
-    </div>
-
-    <div class="glass-name">
-
-      DOUBLE TROUBLE
-
-    </div>
-
-    <div class="glass-price">
-
-      287 Kč
-
-    </div>
-
-  </div>
-
 </section>
 
-<!-- ======================================== -->
-<!-- CATEGORY BUBBLES -->
-<!-- ======================================== -->
+<!-- ========================================= -->
+<!-- RATING -->
+<!-- ========================================= -->
 
-<div class="categories">
-
-<button class="category active" data-category="burgers">
-🍔 BURGERS
-</button>
-
-<button class="category" data-category="premium">
-🔥 PREMIUM
-</button>
-
-<button class="category" data-category="sides">
-🍟 SIDES
-</button>
-
-<button class="category" data-category="drinks">
-🥤 DRINKS
-</button>
-
-<button class="category" data-category="dips">
-🥣 DIPS
-</button>
-
-</div>
-
-<div id="products" class="products"></div>
-<!-- ======================================== -->
-<!-- LIVE ACTIVITY -->
-<!-- ======================================== -->
 <section class="rating-bar">
 
   <div>
@@ -182,261 +103,110 @@
   </div>
 
 </section>
+
+<!-- ========================================= -->
+<!-- CATEGORIES -->
+<!-- ========================================= -->
+
+<section class="categories">
+
+  <div
+  class="category active"
+  data-category="burgers">
+
+    🍔
+
+    <span>
+      BURGERS
+    </span>
+
+  </div>
+
+  <div
+  class="category"
+  data-category="premium">
+
+    🔥
+
+    <span>
+      PREMIUM
+    </span>
+
+  </div>
+
+  <div
+  class="category"
+  data-category="sides">
+
+    🍟
+
+    <span>
+      SIDES
+    </span>
+
+  </div>
+
+  <div
+  class="category"
+  data-category="drinks">
+
+    🥤
+
+    <span>
+      DRINKS
+    </span>
+
+  </div>
+
+  <div
+  class="category"
+  data-category="dips">
+
+    🥣
+
+    <span>
+      DIPS
+    </span>
+
+  </div>
+
+</section>
+
+<!-- ========================================= -->
+<!-- LIVE PILLS -->
+<!-- ========================================= -->
+
 <section class="live-orders">
 
   <div class="live-pill">
-
     🔥 Právě objednáno ve Vítkovicích
-
   </div>
 
   <div class="live-pill">
-
     ⚡ Double Trouble trenduje
-
   </div>
 
   <div class="live-pill">
-
     🍟 + hranolky jen za 79 Kč
-
   </div>
 
 </section>
 
-<!-- ======================================== -->
-<!-- MENU -->
-<!-- ======================================== -->
+<!-- ========================================= -->
+<!-- PRODUCTS -->
+<!-- ========================================= -->
 
-<section class="menu-wrapper" id="menu">
-
-  <div class="section-head">
-
-    BESTSELLERS
-
-  </div>
-
-  <!-- MENU GRID -->
-  <div class="menu-grid" id="menuGrid"></div>
-
-</section>
-
-<!-- ======================================== -->
-<!-- REVIEWS -->
-<!-- ======================================== -->
-
-<section class="reviews-section">
-
-  <div class="section-head">
-
-    RECENZE
-
-  </div>
-
-  <div class="review-row">
-
-    <div class="review-card">
-
-      <div class="stars">
-
-        ★★★★★
-
-      </div>
-
-      <p>
-
-        „Nejlepší burger co jsem měl přes rozvoz.“
-
-
-      </p>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- ======================================== -->
-<!-- FLOATING CART -->
-<!-- ======================================== -->
-
-<div class="floating-cart" onclick="toggleCart()">
-
-  <div>
-
-    🛒
-
-    <span id="floatingCount">
-
-      0
-
-    </span>
-
-    ITEMS
-
-  </div>
-
-  <div id="floatingPrice">
-
-    0 Kč
-
-  </div>
+<div
+id="products"
+class="products">
 
 </div>
 
-<!-- ======================================== -->
-<!-- SIDE CART -->
-<!-- ======================================== -->
-
-<div class="cart-panel" id="cartPanel">
-
-  <div class="cart-top">
-
-    <h2>
-      Košík
-    </h2>
-
-    <button onclick="toggleCart()">
-      ✕
-    </button>
-
-  </div>
-
-  <div id="cartItems" class="cart-items"></div>
-
-  <div class="cart-bottom">
-
-    <div class="cart-total">
-
-      <span>
-        Celkem
-      </span>
-
-      <span id="cartTotal">
-
-        0 Kč
-
-      </span>
-
-    </div>
-
-    <button class="checkout-btn">
-
-      CHECKOUT
-
-    </button>
-
-  </div>
-
-</div>
-
-<!-- ======================================== -->
-<!-- DETAIL MODAL -->
-<!-- ======================================== -->
-
-<div class="detail-modal" id="detailModal">
-
-  <div class="detail-box">
-
-    <button class="close-detail" onclick="closeDetail()">
-
-      ✕
-
-    </button>
-
-    <img id="detailImg">
-
-    <div class="detail-info">
-
-      <div class="detail-badge">
-
-        🔥 BESTSELLER
-
-      </div>
-
-      <h2 id="detailName"></h2>
-
-      <p id="detailDesc"></p>
-
-      <div class="detail-price" id="detailPrice">
-
-        0 Kč
-
-      </div>
-
-      <!-- MENU -->
-      <div class="option-group">
-
-        <h3>
-
-          🍟 MENU
-
-        </h3>
-
-        <label>
-
-          <input type="radio" name="menu" checked>
-
-          Jen burger
-
-        </label>
-
-        <label>
-
-          <input type="radio" name="menu">
-
-          Přidat menu (+79 Kč)
-
-        </label>
-
-      </div>
-
-      <!-- EXTRA -->
-      <div class="option-group">
-
-        <h3>
-
-          🥤 NÁPOJ
-
-        </h3>
-
-        <select>
-
-          <option>Coca-Cola</option>
-          <option>Sprite</option>
-          <option>Fanta Zero</option>
-
-        </select>
-
-      </div>
-
-      <button class="add-btn">
-
-        PŘIDAT DO KOŠÍKU
-
-      </button>
-
-    </div>
-
-  </div>
-
-</div>
-
-<!-- ======================================== -->
-<!-- TOAST -->
-<!-- ======================================== -->
-
-<div class="toast" id="toast">
-
-  Přidáno do košíku 🔥
-
-</div>
-
-<!-- ======================================== -->
+<!-- ========================================= -->
 <!-- FOOTER -->
-<!-- ======================================== -->
+<!-- ========================================= -->
 
-<footer>
+<footer class="footer">
 
   <div class="footer-logo">
 
@@ -444,7 +214,7 @@
 
   </div>
 
-  <div class="footer-text">
+  <div class="footer-info">
 
     Ostrava • Vítkovice
 
@@ -452,15 +222,11 @@
 
 </footer>
 
+<!-- ========================================= -->
+<!-- SCRIPT -->
+<!-- ========================================= -->
+
 <script src="app.js"></script>
-<script>
 
-window.addEventListener("load",()=>{
-
-  document.getElementById("loader").style.display="none";
-
-});
-
-</script>
 </body>
 </html>
