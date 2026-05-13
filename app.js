@@ -219,19 +219,117 @@ tabs.forEach(tab=>{
 /* ADD TO CART */
 /* ========================================= */
 
+/* ========================================= */
+/* CART PANEL */
+/* ========================================= */
+
+const cartPanel =
+document.getElementById("cart-panel");
+
+const cartBtn =
+document.querySelector(".cart");
+
+const closeCart =
+document.getElementById("close-cart");
+
+const cartItems =
+document.getElementById("cart-items");
+
+const cartTotal =
+document.getElementById("cart-total");
+
+/* OPEN */
+
+cartBtn.addEventListener("click",()=>{
+
+  cartPanel.classList.add("active");
+
+});
+
+/* CLOSE */
+
+closeCart.addEventListener("click",()=>{
+
+  cartPanel.classList.remove("active");
+
+});
+
+/* ========================================= */
+/* ADD TO CART */
+/* ========================================= */
+
 function addToCart(name,price){
 
   cart.push({
-
     name,
     price
+  });
+
+  updateCart();
+
+  showToast(name);
+
+}
+
+/* ========================================= */
+/* UPDATE CART */
+/* ========================================= */
+
+function updateCart(){
+
+  cartItems.innerHTML = "";
+
+  let total = 0;
+
+  cart.forEach((item,index)=>{
+
+    total += item.price;
+
+    cartItems.innerHTML += `
+
+    <div class="cart-item">
+
+      <div>
+
+        <h4>
+          ${item.name}
+        </h4>
+
+        <p>
+          ${item.price} Kč
+        </p>
+
+      </div>
+
+      <button onclick="removeItem(${index})">
+
+        ✕
+
+      </button>
+
+    </div>
+
+    `;
 
   });
 
   cartCount.innerText =
   cart.length;
 
-  showToast(name);
+  cartTotal.innerText =
+  total + " Kč";
+
+}
+
+/* ========================================= */
+/* REMOVE */
+/* ========================================= */
+
+function removeItem(index){
+
+  cart.splice(index,1);
+
+  updateCart();
 
 }
 
@@ -277,3 +375,51 @@ function showToast(name){
 /* ========================================= */
 
 render("burgers");
+let cart = [];
+
+function toggleCart(){
+  document.getElementById("cart-panel").classList.toggle("active");
+}
+
+function addToCart(name, price){
+
+  cart.push({
+    name,
+    price
+  });
+
+  renderCart();
+}
+
+function renderCart(){
+
+  const cartItems = document.getElementById("cart-items");
+  const cartCount = document.getElementById("cart-count");
+  const cartTotal = document.getElementById("cart-total");
+
+  cartItems.innerHTML = "";
+
+  let total = 0;
+
+  cart.forEach(item => {
+
+    total += item.price;
+
+    cartItems.innerHTML += `
+    
+    <div class="cart-item">
+
+      <div class="cart-item-info">
+        <h4>${item.name}</h4>
+        <p>${item.price} Kč</p>
+      </div>
+
+    </div>
+
+    `;
+
+  });
+
+  cartCount.innerText = cart.length;
+  cartTotal.innerText = total + " Kč";
+}
