@@ -1,58 +1,1282 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BIG BUNS</title>
-<link rel="stylesheet" href="style.css">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>BIG BUNS</title>
+
+  <!-- FONTS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
 
-<div class="logo">BIG BUNS</div>
+<!-- ======================================== -->
+<!-- LOADER -->
+<!-- ======================================== -->
 
-<div class="hero">
-Street burgery s charakterem
-<div class="sub">⭐ 4.8 • dnes 23 objednávek</div>
+<div class="loader" id="loader">
+
+  <div class="loader-logo">
+    BIG BUNS
+  </div>
+
 </div>
 
-<div class="tabs">
-<div class="tab active" onclick="switchTab('burgers',this)">Burgery</div>
-<div class="tab" onclick="switchTab('premium',this)">Premium</div>
-<div class="tab" onclick="switchTab('menu',this)">Menu</div>
-<div class="tab" onclick="switchTab('sides',this)">Přílohy</div>
-<div class="tab" onclick="switchTab('drinks',this)">Nápoje</div>
-<div class="tab" onclick="switchTab('sauces',this)">Omáčky</div>
+<!-- ======================================== -->
+<!-- NAVBAR -->
+<!-- ======================================== -->
+
+<header class="navbar">
+
+  <div class="logo">
+
+    BIG BUNS
+
+  </div>
+
+  <div class="nav-right">
+
+    <div class="delivery-pill">
+
+      🔥 Rozvoz do 45 min
+
+    </div>
+
+    <div class="cart-icon" onclick="toggleCart()">
+
+      🛒
+
+      <span id="cartCount">
+        0
+      </span>
+
+    </div>
+
+  </div>
+
+</header>
+
+<!-- ======================================== -->
+<!-- HERO -->
+<!-- ======================================== -->
+
+<section class="hero">
+
+  <!-- VIDEO -->
+  <video autoplay muted loop playsinline class="hero-video">
+
+    <source src="burger.mp4" type="video/mp4">
+
+  </video>
+
+  <!-- OVERLAY -->
+  <div class="hero-overlay"></div>
+
+  <!-- CONTENT -->
+  <div class="hero-content">
+
+    <div class="hero-badge">
+
+      🔥 PREMIUM STREETFOOD
+
+    </div>
+
+    <h1>
+
+      BIG BUNS
+
+    </h1>
+
+    <p>
+
+      SORRY, tady tvoje dieta končí..
+
+    </p>
+
+    <button class="hero-btn" onclick="scrollToMenu()">
+
+      🍔 ORDER NOW
+
+    </button>
+
+  </div>
+
+  <!-- FLOATING GLASS -->
+  <div class="hero-glass">
+
+    <div class="glass-title">
+
+      🍔 Dnes bestseller
+
+    </div>
+
+    <div class="glass-name">
+
+      DOUBLE TROUBLE
+
+    </div>
+
+    <div class="glass-price">
+
+      287 Kč
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ======================================== -->
+<!-- CATEGORY BUBBLES -->
+<!-- ======================================== -->
+
+<section class="bubble-section">
+
+  <div class="bubble-card" onclick="switchTab('burgers')">
+
+    <div class="bubble-icon">
+      🍔
+    </div>
+
+    <div class="bubble-text">
+      BURGERS
+    </div>
+
+  </div>
+
+  <div class="bubble-card" onclick="switchTab('premium')">
+
+    <div class="bubble-icon">
+      🔥
+    </div>
+
+    <div class="bubble-text">
+      PREMIUM
+    </div>
+
+  </div>
+
+  <div class="bubble-card" onclick="switchTab('sides')">
+
+    <div class="bubble-icon">
+      🍟
+    </div>
+
+    <div class="bubble-text">
+      SIDES
+    </div>
+
+  </div>
+
+  <div class="bubble-card" onclick="switchTab('drinks')">
+
+    <div class="bubble-icon">
+      🥤
+    </div>
+
+    <div class="bubble-text">
+      DRINKS
+    </div>
+
+  </div>
+
+  <div class="bubble-card" onclick="switchTab('sauces')">
+
+    <div class="bubble-icon">
+      🥣
+    </div>
+
+    <div class="bubble-text">
+      DIPS
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ======================================== -->
+<!-- LIVE ACTIVITY -->
+<!-- ======================================== -->
+
+<section class="live-orders">
+
+  <div class="live-pill">
+
+    🔥 Právě objednáno ve Vítkovicích
+
+  </div>
+
+  <div class="live-pill">
+
+    ⚡ Double Trouble trenduje
+
+  </div>
+
+  <div class="live-pill">
+
+    🍟 + hranolky jen za 79 Kč
+
+  </div>
+
+</section>
+
+<!-- ======================================== -->
+<!-- MENU -->
+<!-- ======================================== -->
+
+<section class="menu-wrapper" id="menu">
+
+  <div class="section-head">
+
+    BESTSELLERS
+
+  </div>
+
+  <!-- MENU GRID -->
+  <div class="menu-grid" id="menuGrid"></div>
+
+</section>
+
+<!-- ======================================== -->
+<!-- REVIEWS -->
+<!-- ======================================== -->
+
+<section class="reviews-section">
+
+  <div class="section-head">
+
+    RECENZE
+
+  </div>
+
+  <div class="review-row">
+
+    <div class="review-card">
+
+      <div class="stars">
+
+        ★★★★★
+
+      </div>
+
+      <p>
+
+        „Nejlepší burger co jsem měl přes rozvoz.“
+
+      </p>
+
+    </div>
+
+    <div class="review-card">
+
+      <div class="stars">
+
+        ★★★★★
+
+      </div>
+
+      <p>
+
+        „To maso a cheddar je úplně insane.“
+
+      </p>
+
+    </div>
+
+    <div class="review-card">
+
+      <div class="stars">
+
+        ★★★★★
+
+      </div>
+
+      <p>
+
+        „Vypadá to jak premium burger brand.“
+
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ======================================== -->
+<!-- FLOATING CART -->
+<!-- ======================================== -->
+
+<div class="floating-cart" onclick="toggleCart()">
+
+  <div>
+
+    🛒
+
+    <span id="floatingCount">
+
+      0
+
+    </span>
+
+    ITEMS
+
+  </div>
+
+  <div id="floatingPrice">
+
+    0 Kč
+
+  </div>
+
 </div>
 
-<div id="content"></div>
+<!-- ======================================== -->
+<!-- SIDE CART -->
+<!-- ======================================== -->
 
-<div class="cartBtn" onclick="toggleCart()">🛒</div>
+<div class="cart-panel" id="cartPanel">
 
-<div class="cart" id="cart">
-<h2>Košík</h2>
-<div id="items"></div>
-<button onclick="startCheckout()">Objednat</button>
+  <div class="cart-top">
+
+    <h2>
+      Košík
+    </h2>
+
+    <button onclick="toggleCart()">
+      ✕
+    </button>
+
+  </div>
+
+  <div id="cartItems" class="cart-items"></div>
+
+  <div class="cart-bottom">
+
+    <div class="cart-total">
+
+      <span>
+        Celkem
+      </span>
+
+      <span id="cartTotal">
+
+        0 Kč
+
+      </span>
+
+    </div>
+
+    <button class="checkout-btn">
+
+      CHECKOUT
+
+    </button>
+
+  </div>
+
 </div>
 
-<div class="sticky">
-<div id="total">0 Kč</div>
-<button onclick="toggleCart()">Objednat →</button>
+<!-- ======================================== -->
+<!-- DETAIL MODAL -->
+<!-- ======================================== -->
+
+<div class="detail-modal" id="detailModal">
+
+  <div class="detail-box">
+
+    <button class="close-detail" onclick="closeDetail()">
+
+      ✕
+
+    </button>
+
+    <img id="detailImg">
+
+    <div class="detail-info">
+
+      <div class="detail-badge">
+
+        🔥 BESTSELLER
+
+      </div>
+
+      <h2 id="detailName"></h2>
+
+      <p id="detailDesc"></p>
+
+      <div class="detail-price" id="detailPrice">
+
+        0 Kč
+
+      </div>
+
+      <!-- MENU -->
+      <div class="option-group">
+
+        <h3>
+
+          🍟 MENU
+
+        </h3>
+
+        <label>
+
+          <input type="radio" name="menu" checked>
+
+          Jen burger
+
+        </label>
+
+        <label>
+
+          <input type="radio" name="menu">
+
+          Přidat menu (+79 Kč)
+
+        </label>
+
+      </div>
+
+      <!-- EXTRA -->
+      <div class="option-group">
+
+        <h3>
+
+          🥤 NÁPOJ
+
+        </h3>
+
+        <select>
+
+          <option>Coca-Cola</option>
+          <option>Sprite</option>
+          <option>Fanta Zero</option>
+
+        </select>
+
+      </div>
+
+      <button class="add-btn">
+
+        PŘIDAT DO KOŠÍKU
+
+      </button>
+
+    </div>
+
+  </div>
+
 </div>
 
-<div class="detail" id="detail">
-<img id="detailImg">
-<h2 id="detailName"></h2>
-<p id="detailDesc"></p>
-<p id="detailPrice"></p>
+<!-- ======================================== -->
+<!-- TOAST -->
+<!-- ======================================== -->
 
-<div id="menuOptions"></div>
+<div class="toast" id="toast">
 
-<button onclick="addToCart()">Přidat</button>
-<button onclick="closeDetail()">Zavřít</button>
+  Přidáno do košíku 🔥
+
 </div>
 
-<div id="toast" class="toast"></div>
+<!-- ======================================== -->
+<!-- FOOTER -->
+<!-- ======================================== -->
+
+<footer>
+
+  <div class="footer-logo">
+
+    BIG BUNS
+
+  </div>
+
+  <div class="footer-text">
+
+    Ostrava • Vítkovice
+
+  </div>
+
+</footer>/* ========================================= */
+/* BURGER CARDS */
+/* ========================================= */
+
+.burger-card{
+  position:relative;
+
+  background:#111;
+
+  border-radius:32px;
+
+  overflow:hidden;
+
+  cursor:pointer;
+
+  transition:.35s;
+
+  border:1px solid rgba(255,255,255,.05);
+}
+
+.burger-card:hover{
+
+  transform:
+  translateY(-10px);
+
+  box-shadow:
+  0 0 45px rgba(255,107,0,.18);
+
+  border-color:
+  rgba(255,107,0,.25);
+
+}
+
+.burger-card img{
+
+  width:100%;
+  height:340px;
+
+  object-fit:cover;
+
+  transition:.5s;
+
+}
+
+.burger-card:hover img{
+
+  transform:scale(1.05);
+
+}
+
+.badge{
+
+  position:absolute;
+
+  top:18px;
+  left:18px;
+
+  z-index:5;
+
+  padding:10px 18px;
+
+  border-radius:999px;
+
+  background:
+  linear-gradient(
+    135deg,
+    #ff6b00,
+    #ff2a2a
+  );
+
+  color:white;
+
+  font-size:12px;
+  font-weight:700;
+
+  letter-spacing:1px;
+
+}
+
+.burger-info{
+
+  padding:28px;
+
+}
+
+.burger-info h2{
+
+  font-family:'Bebas Neue',sans-serif;
+
+  font-size:38px;
+
+  letter-spacing:3px;
+
+}
+
+.burger-price{
+
+  margin-top:16px;
+
+  font-size:28px;
+  font-weight:800;
+
+  color:#ff6b00;
+
+}
+
+/* ========================================= */
+/* REVIEWS */
+/* ========================================= */
+
+.review-row{
+
+  display:grid;
+
+  grid-template-columns:
+  repeat(3,1fr);
+
+  gap:24px;
+
+}
+
+.review-card{
+
+  background:#121212;
+
+  border-radius:28px;
+
+  padding:32px;
+
+  border:1px solid rgba(255,255,255,.04);
+
+}
+
+.stars{
+
+  color:#ffb800;
+
+  margin-bottom:18px;
+
+  font-size:20px;
+
+}
+
+.review-card p{
+
+  color:#d0d0d0;
+
+  line-height:1.8;
+
+}
+
+/* ========================================= */
+/* FLOATING CART */
+/* ========================================= */
+
+.floating-cart{
+
+  position:fixed;
+
+  bottom:24px;
+  right:24px;
+
+  z-index:999;
+
+  width:320px;
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  padding:18px 22px;
+
+  border-radius:24px;
+
+  background:
+  rgba(18,18,18,.85);
+
+  backdrop-filter:blur(20px);
+
+  border:
+  1px solid rgba(255,255,255,.08);
+
+  cursor:pointer;
+
+  transition:.3s;
+
+}
+
+.floating-cart:hover{
+
+  transform:translateY(-4px);
+
+  box-shadow:
+  0 0 40px rgba(255,107,0,.18);
+
+}
+
+.floating-cart div{
+
+  font-weight:700;
+
+}
+
+/* ========================================= */
+/* CART PANEL */
+/* ========================================= */
+
+.cart-panel{
+
+  position:fixed;
+
+  top:0;
+  right:-460px;
+
+  width:440px;
+  height:100vh;
+
+  z-index:9999;
+
+  background:
+  rgba(10,10,10,.96);
+
+  backdrop-filter:blur(20px);
+
+  border-left:
+  1px solid rgba(255,255,255,.06);
+
+  transition:.45s;
+
+  display:flex;
+  flex-direction:column;
+
+}
+
+.cart-panel.active{
+
+  right:0;
+
+}
+
+.cart-top{
+
+  padding:28px;
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  border-bottom:
+  1px solid rgba(255,255,255,.05);
+
+}
+
+.cart-top h2{
+
+  font-family:'Bebas Neue',sans-serif;
+
+  font-size:42px;
+
+  letter-spacing:3px;
+
+}
+
+.cart-top button{
+
+  background:none;
+  border:none;
+
+  color:white;
+
+  font-size:28px;
+
+  cursor:pointer;
+
+}
+
+.cart-items{
+
+  flex:1;
+
+  overflow:auto;
+
+  padding:24px;
+
+}
+
+.cart-item{
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  margin-bottom:18px;
+
+  padding:18px;
+
+  border-radius:20px;
+
+  background:#141414;
+
+}
+
+.cart-item-name{
+
+  font-weight:700;
+
+}
+
+.cart-item-price{
+
+  margin-top:8px;
+
+  color:#ff6b00;
+
+}
+
+.remove-btn{
+
+  width:38px;
+  height:38px;
+
+  border-radius:50%;
+
+  border:none;
+
+  background:#1d1d1d;
+
+  color:white;
+
+  cursor:pointer;
+
+}
+
+.cart-bottom{
+
+  padding:24px;
+
+  border-top:
+  1px solid rgba(255,255,255,.05);
+
+}
+
+.cart-total{
+
+  display:flex;
+  justify-content:space-between;
+
+  margin-bottom:20px;
+
+  font-size:24px;
+  font-weight:800;
+
+}
+
+.checkout-btn{
+
+  width:100%;
+
+  padding:18px;
+
+  border:none;
+
+  border-radius:18px;
+
+  background:
+  linear-gradient(
+    135deg,
+    #ff6b00,
+    #ff2a2a
+  );
+
+  color:white;
+
+  font-size:16px;
+  font-weight:800;
+
+  cursor:pointer;
+
+  box-shadow:
+  0 0 35px rgba(255,107,0,.28);
+
+}
+
+/* ========================================= */
+/* DETAIL MODAL */
+/* ========================================= */
+
+.detail-modal{
+
+  position:fixed;
+
+  inset:0;
+
+  z-index:99999;
+
+  display:none;
+
+  align-items:center;
+  justify-content:center;
+
+  background:
+  rgba(0,0,0,.78);
+
+  backdrop-filter:blur(18px);
+
+  padding:24px;
+
+}
+
+.detail-modal.active{
+
+  display:flex;
+
+}
+
+.detail-box{
+
+  width:100%;
+  max-width:1150px;
+
+  display:grid;
+
+  grid-template-columns:
+  1fr 1fr;
+
+  overflow:hidden;
+
+  border-radius:34px;
+
+  background:#101010;
+
+  position:relative;
+
+}
+
+.detail-box img{
+
+  width:100%;
+  height:100%;
+
+  object-fit:cover;
+
+}
+
+.detail-info{
+
+  padding:42px;
+
+}
+
+.detail-badge{
+
+  display:inline-flex;
+
+  padding:10px 16px;
+
+  border-radius:999px;
+
+  background:
+  rgba(255,107,0,.14);
+
+  color:#ff6b00;
+
+  margin-bottom:22px;
+
+}
+
+.detail-info h2{
+
+  font-family:'Bebas Neue',sans-serif;
+
+  font-size:68px;
+
+  letter-spacing:4px;
+
+  line-height:1;
+
+}
+
+.detail-info p{
+
+  margin-top:18px;
+
+  color:#d0d0d0;
+
+  line-height:1.8;
+
+}
+
+.detail-price{
+
+  margin-top:28px;
+
+  font-size:44px;
+  font-weight:800;
+
+  color:#ff6b00;
+
+}
+
+.option-group{
+
+  margin-top:30px;
+
+}
+
+.option-group h3{
+
+  margin-bottom:14px;
+
+  font-size:18px;
+
+}
+
+.option-group label{
+
+  display:flex;
+  align-items:center;
+  gap:10px;
+
+  margin-bottom:10px;
+
+  color:#d0d0d0;
+
+}
+
+.option-group select{
+
+  width:100%;
+
+  padding:16px;
+
+  border-radius:16px;
+
+  border:none;
+
+  background:#1a1a1a;
+
+  color:white;
+
+}
+
+.add-btn{
+
+  margin-top:40px;
+
+  width:100%;
+
+  padding:20px;
+
+  border:none;
+
+  border-radius:18px;
+
+  background:
+  linear-gradient(
+    135deg,
+    #ff6b00,
+    #ff2a2a
+  );
+
+  color:white;
+
+  font-size:16px;
+  font-weight:800;
+
+  cursor:pointer;
+
+  box-shadow:
+  0 0 40px rgba(255,107,0,.25);
+
+}
+
+.close-detail{
+
+  position:absolute;
+
+  top:22px;
+  right:22px;
+
+  width:52px;
+  height:52px;
+
+  border-radius:50%;
+
+  border:none;
+
+  background:
+  rgba(255,255,255,.08);
+
+  color:white;
+
+  font-size:24px;
+
+  cursor:pointer;
+
+  z-index:10;
+
+}
+
+/* ========================================= */
+/* TOAST */
+/* ========================================= */
+
+.toast{
+
+  position:fixed;
+
+  left:50%;
+  bottom:120px;
+
+  transform:
+  translateX(-50%)
+  translateY(40px);
+
+  z-index:999999;
+
+  padding:18px 28px;
+
+  border-radius:999px;
+
+  background:
+  linear-gradient(
+    135deg,
+    #ff6b00,
+    #ff2a2a
+  );
+
+  color:white;
+
+  font-weight:700;
+
+  opacity:0;
+
+  transition:.35s;
+
+}
+
+.toast.show{
+
+  opacity:1;
+
+  transform:
+  translateX(-50%)
+  translateY(0);
+
+}
+
+/* ========================================= */
+/* FOOTER */
+/* ========================================= */
+
+footer{
+
+  padding:80px 24px;
+
+  text-align:center;
+
+  border-top:
+  1px solid rgba(255,255,255,.05);
+
+}
+
+.footer-logo{
+
+  font-family:'Bebas Neue',sans-serif;
+
+  font-size:82px;
+
+  letter-spacing:6px;
+
+}
+
+.footer-text{
+
+  margin-top:14px;
+
+  color:#a0a0a0;
+
+}
+
+/* ========================================= */
+/* MOBILE */
+/* ========================================= */
+
+@media(max-width:1000px){
+
+  .detail-box{
+
+    grid-template-columns:1fr;
+
+    overflow:auto;
+
+    max-height:95vh;
+
+  }
+
+  .detail-info h2{
+
+    font-size:48px;
+
+  }
+
+}
+
+@media(max-width:900px){
+
+  .review-row{
+
+    grid-template-columns:1fr;
+
+  }
+
+  .floating-cart{
+
+    left:12px;
+    right:12px;
+
+    width:auto;
+
+    bottom:12px;
+
+  }
+
+  .cart-panel{
+
+    width:100%;
+
+  }
+
+}
+
+@media(max-width:700px){
+
+  .hero-content h1{
+
+    font-size:92px;
+
+  }
+
+  .logo{
+
+    font-size:34px;
+
+  }
+
+  .delivery-pill{
+
+    display:none;
+
+  }
+
+  .hero-btn{
+
+    width:100%;
+
+  }
+
+  .bubble-card{
+
+    min-width:150px;
+
+  }
+
+  .burger-card img{
+
+    height:260px;
+
+  }
+
+}
 
 <script src="app.js"></script>
 
