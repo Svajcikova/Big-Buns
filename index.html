@@ -3,288 +3,173 @@
 
 <head>
 
-  <meta charset="UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta name="viewport"
-  content="width=device-width, initial-scale=1.0">
+<title>BIG BUNS</title>
 
-  <title>BIG BUNS</title>
+<link rel="stylesheet" href="style.css">
 
-  <link rel="stylesheet"
-  href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;700;800&display=swap" rel="stylesheet">
 
 </head>
 
 <body>
 
-<!-- ========================================= -->
+<!-- LOADING -->
+
+<div class="loading-screen" id="loading">
+
+<h1>BIG BUNS</h1>
+
+</div>
+
 <!-- NAVBAR -->
-<!-- ========================================= -->
 
-<nav class="navbar">
+<header class="navbar">
 
-  <div class="logo">
-    BIG BUNS
-  </div>
+<div class="logo"
+onclick="location.href='../index.html'">
 
-  <div class="nav-right">
-
-    <div class="delivery">
-      🔥 Rozvoz do 45 min
-    </div>
-
-    <div class="cart">
-
-     <!-- CART BUTTON -->
-
-<div class="cart-floating" onclick="toggleCart()">
-  🛒
-  <span id="cart-count">0</span>
-</div>
-
-<!-- CART PANEL -->
-
-<div class="cart-panel" id="cart-panel">
-
-  <div class="cart-header">
-    <h2>Košík</h2>
-    <button onclick="toggleCart()">✕</button>
-  </div>
-
-  <div id="cart-items" class="cart-items"></div>
-
-  <div class="cart-footer">
-    <h3>Celkem: <span id="cart-total">0 Kč</span></h3>
-
-    <button class="checkout-btn">
-      CHECKOUT
-    </button>
-  </div>
+BIG BUNS
 
 </div>
 
-<!-- ========================================= -->
+<div class="nav-right">
+
+<div class="delivery-badge">
+🔥 Rozvoz do 45 min
+</div>
+
+</div>
+
+</header>
+
 <!-- HERO -->
-<!-- ========================================= -->
 
 <section class="hero">
 
-  <div class="hero-image"></div>
+<div class="overlay"></div>
 
-  <div class="hero-content">
+<div class="hero-content">
 
-    <h1 class="hero-title">
+<p class="mini-text">
+PREMIUM STREETFOOD
+</p>
 
-      BIG<br>
-      BUNS
+<h1>
+BIG<br>
+BUNS
+</h1>
 
-    </h1>
+<p class="hero-subtitle">
+SORRY, tady tvoje dieta končí..
+</p>
 
-    <p class="hero-sub">
+<a href="pages/order.html"
+class="hero-button">
 
-      SORRY, tady tvoje dieta končí..
+OBJEDNAT
 
-    </p>
-
-    <button class="order-btn">
-
-      🍔 ORDER NOW
-
-    </button>
-
-  </div>
-
-</section>
-
-<!-- ========================================= -->
-<!-- RATING -->
-<!-- ========================================= -->
-
-<section class="rating-bar">
-
-  <div>
-    ⭐ 4.8 / 5
-  </div>
-
-  <div>
-    🔥 TOP BURGERY V OSTRAVĚ
-  </div>
-
-  <div>
-    🍔 1000+ OBJEDNÁVEK
-  </div>
-
-</section>
-
-<!-- ========================================= -->
-<!-- CATEGORIES -->
-<!-- ========================================= -->
-
-<section class="categories">
-
-  <div
-  class="category active"
-  data-category="burgers">
-
-    🍔
-
-    <span>
-      BURGERS
-    </span>
-
-  </div>
-
-  <div
-  class="category"
-  data-category="premium">
-
-    🔥
-
-    <span>
-      PREMIUM
-    </span>
-
-  </div>
-
-  <div
-  class="category"
-  data-category="sides">
-
-    🍟
-
-    <span>
-      SIDES
-    </span>
-
-  </div>
-
-  <div
-  class="category"
-  data-category="drinks">
-
-    🥤
-
-    <span>
-      DRINKS
-    </span>
-
-  </div>
-
-  <div
-  class="category"
-  data-category="dips">
-
-    🥣
-
-    <span>
-      DIPS
-    </span>
-
-  </div>
-
-</section>
-
-<!-- ========================================= -->
-<!-- LIVE PILLS -->
-<!-- ========================================= -->
-
-<section class="live-orders">
-
-  <div class="live-pill">
-    🔥 Právě objednáno ve Vítkovicích
-  </div>
-
-  <div class="live-pill">
-    ⚡ Double Trouble trenduje
-  </div>
-
-  <div class="live-pill">
-    🍟 + hranolky jen za 79 Kč
-  </div>
-
-</section>
-
-<!-- ========================================= -->
-<!-- PRODUCTS -->
-<!-- ========================================= -->
-
-<div
-id="products"
-class="products">
+</a>
 
 </div>
 
-<!-- ========================================= -->
-<!-- FOOTER -->
-<!-- ========================================= -->
+</section>
 
-<footer class="footer">
+<!-- CARDS -->
 
-  <div class="footer-logo">
+<section class="cards-section">
 
-    BIG BUNS
+<a href="pages/order.html"
+class="glass-card">
 
-  </div>
+<img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1200">
 
-  <div class="footer-info">
+<div class="card-content">
 
-    Ostrava • Vítkovice
+<h3>MENU</h3>
 
-  </div>
-
-</footer>
-
-<!-- ========================================= -->
-<!-- SCRIPT -->
-<!-- ========================================= -->
-<!-- ========================================= -->
-<!-- CART PANEL -->
-<!-- ========================================= -->
-
-<div id="cart-panel" class="cart-panel">
-
-  <div class="cart-header">
-
-    <h2>
-      Košík
-    </h2>
-
-    <button id="close-cart">
-
-      ✕
-
-    </button>
-
-  </div>
-
-  <div id="cart-items"
-  class="cart-items">
-
-  </div>
-
-  <div class="cart-footer">
-
-    <div class="cart-total">
-
-      Celkem:
-
-      <span id="cart-total">
-
-        0 Kč
-
-      </span>
-
-    </div>
-
-    <button class="checkout-btn">
-
-      CHECKOUT
-
-    </button>
-
-  </div>
+<p>
+Objednej online během pár sekund.
+</p>
 
 </div>
+
+</a>
+
+<a href="pages/delivery.html"
+class="glass-card">
+
+<img src="https://images.unsplash.com/photo-1526367790999-0150786686a2?q=80&w=1200">
+
+<div class="card-content">
+
+<h3>DELIVERY</h3>
+
+<p>
+Foodora • Wolt • Bolt
+</p>
+
+</div>
+
+</a>
+
+<a href="pages/reviews.html"
+class="glass-card">
+
+<img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1200">
+
+<div class="card-content">
+
+<h3>REVIEWS</h3>
+
+<p>
+Hodnocení zákazníků.
+</p>
+
+</div>
+
+</a>
+
+<a href="pages/contact.html"
+class="glass-card">
+
+<img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200">
+
+<div class="card-content">
+
+<h3>CONTACT</h3>
+
+<p>
+Kontakt a spolupráce.
+</p>
+
+</div>
+
+</a>
+
+<a href="pages/location.html"
+class="glass-card">
+
+<img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=1200">
+
+<div class="card-content">
+
+<h3>LOCATION</h3>
+
+<p>
+Najdi naši pobočku.
+</p>
+
+</div>
+
+</a>
+
+</section>
+
 <script src="app.js"></script>
 
 </body>

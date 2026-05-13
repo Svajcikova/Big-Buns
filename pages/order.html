@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>BIG BUNS ORDER</title>
+
+<link rel="stylesheet" href="../style.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<header class="navbar">
+
+<div class="logo"
+onclick="location.href='../index.html'">
+
+BIG BUNS
+
+</div>
+
+<div class="nav-right">
+
+<div class="delivery-badge">
+
+🔥 Rozvoz do 45 min
+
+</div>
+
+<div class="cart-button"
+onclick="toggleCart()">
+
+🛒
+
+<span id="cart-count">
+
+0
+
+</span>
+
+</div>
+
+</div>
+
+</header>
+
+<!-- HERO -->
+
+<section class="order-hero">
+
+<h1>
+ORDER
+</h1>
+
+<p>
+Vyber si burger během pár sekund.
+</p>
+
+</section>
+
+<!-- CATEGORY TABS -->
+
+<section class="tabs">
+
+<button class="tab active"
+onclick="renderCategory('burgers',event)">
+
+🍔 BURGERS
+
+</button>
+
+<button class="tab"
+onclick="renderCategory('premium',event)">
+
+🔥 PREMIUM
+
+</button>
+
+<button class="tab"
+onclick="renderCategory('sides',event)">
+
+🍟 SIDES
+
+</button>
+
+<button class="tab"
+onclick="renderCategory('drinks',event)">
+
+🥤 DRINKS
+
+</button>
+
+<button class="tab"
+onclick="renderCategory('dips',event)">
+
+🥣 DIPS
+
+</button>
+
+</section>
+
+<!-- MENU -->
+
+<section
+class="menu-grid"
+id="menu-grid">
+
+</section>
+
+<!-- FLOATING CART -->
+
+<div
+class="floating-cart"
+onclick="toggleCart()">
+
+🛒
+
+<span id="floating-count">
+
+0
+
+</span>
+
+<div id="floating-total">
+
+0 Kč
+
+</div>
+
+</div>
+
+<!-- CART PANEL -->
+
+<div
+class="cart-panel"
+id="cart-panel">
+
+<div class="cart-header">
+
+<h2>
+Košík
+</h2>
+
+<button onclick="toggleCart()">
+✕
+</button>
+
+</div>
+
+<div
+id="cart-items"
+class="cart-items">
+
+</div>
+
+<div class="checkout-section">
+
+<input
+type="text"
+placeholder="Jméno">
+
+<input
+type="text"
+placeholder="Telefon">
+
+<input
+type="text"
+placeholder="Adresa">
+
+<textarea
+placeholder="Poznámka">
+</textarea>
+
+<div class="payment-row">
+
+<button>
+💳 Karta
+</button>
+
+<button>
+💵 Hotově
+</button>
+
+</div>
+
+<div class="cart-total">
+
+Celkem:
+
+<span id="cart-total">
+0 Kč
+</span>
+
+</div>
+
+<button class="checkout-btn">
+
+OBJEDNAT
+
+</button>
+
+</div>
+
+</div>
+
+<script src="../order.js"></script>
+
+</body>
+</html>
