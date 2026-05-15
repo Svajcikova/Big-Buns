@@ -30,7 +30,7 @@ premium:[
 {
 name:"🥑 Big Buns Fresh Bite",
 price:239,
-desc:"Mozzarella, avokádo, pesto, citron mayo.",
+desc:"Mozzarella, avokádo, pesto.",
 img:"https://images.unsplash.com/photo-1553979459-d2229ba7433b?q=80&w=1200"
 },
 
@@ -44,7 +44,7 @@ img:"https://images.unsplash.com/photo-1571091718767-18b5b1457add?q=80&w=1200"
 {
 name:"🍔 Buns & Bacon Deluxe",
 price:275,
-desc:"Brie, dvojitá slanina, BBQ, onion rings.",
+desc:"Brie, dvojitá slanina, onion rings.",
 img:"https://images.unsplash.com/photo-1586816001966-79b736744398?q=80&w=1200"
 },
 
@@ -69,7 +69,7 @@ img:"https://images.unsplash.com/photo-1573080496219-bb080dd4f877?q=80&w=1200"
 {
 name:"🧇 Bramborové mřížky",
 price:71,
-desc:"Extra crispy potato waffles.",
+desc:"Extra crispy.",
 img:"https://images.unsplash.com/photo-1630384060421-cb20d0e0649d?q=80&w=1200"
 },
 
@@ -81,14 +81,14 @@ img:"https://images.unsplash.com/photo-1639024471283-03518883512d?q=80&w=1200"
 },
 
 {
-name:"🧀 Mozzarella Sticks",
+name:"🧀 Mozzarella sticks",
 price:95,
 desc:"5 ks mozzarella sticks.",
 img:"https://images.unsplash.com/photo-1548340748-6d2b7d7da280?q=80&w=1200"
 },
 
 {
-name:"🧀 Camembert Bites",
+name:"🧀 Camembert bites",
 price:95,
 desc:"5 ks camembert bites.",
 img:"https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=1200"
@@ -190,36 +190,20 @@ img:"https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?q=80&w=1200"
 
 };
 
-/* CART */
-
 let cart = [];
 
 /* RENDER */
 
-function renderCategory(category,event){
+function renderCategory(category){
 
-if(event){
+const products =
+document.getElementById("products");
 
-document
-.querySelectorAll(".tab")
-.forEach(tab=>{
-
-tab.classList.remove("active");
-
-});
-
-event.target.classList.add("active");
-
-}
-
-const grid =
-document.getElementById("menu-grid");
-
-grid.innerHTML = "";
+products.innerHTML = "";
 
 menu[category].forEach(item=>{
 
-grid.innerHTML += `
+products.innerHTML += `
 
 <div class="product-card">
 
@@ -262,7 +246,7 @@ onclick="addToCart('${item.name}', ${item.price})">
 
 }
 
-/* ADD TO CART */
+/* ADD */
 
 function addToCart(name,price){
 
@@ -280,19 +264,13 @@ updateCart();
 function updateCart(){
 
 const cartItems =
-document.getElementById("cart-items");
+document.getElementById("cartItems");
 
 const cartTotal =
-document.getElementById("cart-total");
+document.getElementById("cartTotal");
 
-const floatingTotal =
-document.getElementById("floating-total");
-
-const count =
-document.getElementById("cart-count");
-
-const floatingCount =
-document.getElementById("floating-count");
+const cartCount =
+document.getElementById("cartCount");
 
 cartItems.innerHTML = "";
 
@@ -334,13 +312,7 @@ onclick="removeItem(${index})">
 cartTotal.innerText =
 total + " Kč";
 
-floatingTotal.innerText =
-total + " Kč";
-
-count.innerText =
-cart.length;
-
-floatingCount.innerText =
+cartCount.innerText =
 cart.length;
 
 }
@@ -355,36 +327,33 @@ updateCart();
 
 }
 
-/* TOGGLE CART */
+/* TOGGLE */
 
 function toggleCart(){
 
 document
-.getElementById("cart-panel")
+.getElementById("cartPanel")
 .classList
 .toggle("active");
 
 }
 
-/* START */
+/* CHECKOUT */
 
-renderCategory("burgers");
-
-const checkoutBtn =
-document.getElementById("checkoutBtn");
-
-if(checkoutBtn){
-
-checkoutBtn.onclick=()=>{
+document
+.getElementById("checkoutBtn")
+.onclick = ()=>{
 
 localStorage.setItem(
 "bigbuns-cart",
 JSON.stringify(cart)
 );
 
-location.href=
+location.href =
 "checkout.html";
 
 };
 
-}
+/* START */
+
+renderCategory("burgers");
