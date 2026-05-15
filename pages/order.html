@@ -4,15 +4,19 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
 <title>BIG BUNS ORDER</title>
 
-<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet"
+href="../style.css">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
 
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;700;800&display=swap"
+rel="stylesheet">
 
 </head>
 
@@ -37,15 +41,12 @@ BIG BUNS
 
 </div>
 
-<div class="cart-button"
+<div class="cart-floating"
 onclick="toggleCart()">
 
 🛒
-
-<span id="cart-count">
-
+<span id="cartCount">
 0
-
 </span>
 
 </div>
@@ -59,49 +60,48 @@ onclick="toggleCart()">
 <section class="order-hero">
 
 <h1>
-ORDER
+
+ORDER NOW
+
 </h1>
 
 <p>
-Vyber si burger během pár sekund.
+
+Premium streetfood delivery.
+
 </p>
 
 </section>
 
-<!-- CATEGORY TABS -->
+<!-- TABS -->
 
 <section class="tabs">
 
-<button class="tab active"
-onclick="renderCategory('burgers',event)">
+<button onclick="renderCategory('burgers')">
 
 🍔 BURGERS
 
 </button>
 
-<button class="tab"
-onclick="renderCategory('premium',event)">
+<button onclick="renderCategory('premium')">
 
 🔥 PREMIUM
 
 </button>
 
-<button class="tab"
-onclick="renderCategory('sides',event)">
+<button onclick="renderCategory('sides')">
 
 🍟 SIDES
 
 </button>
 
-<button class="tab"
-onclick="renderCategory('drinks',event)">
+<button onclick="renderCategory('drinks')">
 
 🥤 DRINKS
 
 </button>
 
-<button class="tab"
-onclick="renderCategory('dips',event)">
+<button onclick="renderCategory('dips')">
 
 🥣 DIPS
 
@@ -109,41 +109,18 @@ onclick="renderCategory('dips',event)">
 
 </section>
 
-<!-- MENU -->
+<!-- PRODUCTS -->
 
 <section
-class="menu-grid"
-id="menu-grid">
+class="products-grid"
+id="products">
 
 </section>
 
-<!-- FLOATING CART -->
+<!-- CART -->
 
-<div
-class="floating-cart"
-onclick="toggleCart()">
-
-🛒
-
-<span id="floating-count">
-
-0
-
-</span>
-
-<div id="floating-total">
-
-0 Kč
-
-</div>
-
-</div>
-
-<!-- CART PANEL -->
-
-<div
-class="cart-panel"
-id="cart-panel">
+<div class="cart-panel"
+id="cartPanel">
 
 <div class="cart-header">
 
@@ -152,60 +129,33 @@ Košík
 </h2>
 
 <button onclick="toggleCart()">
+
 ✕
+
 </button>
 
 </div>
 
-<div
-id="cart-items"
-class="cart-items">
+<div id="cartItems">
 
 </div>
 
-<div class="checkout-section">
+<div class="cart-footer">
 
-<input
-type="text"
-placeholder="Jméno">
-
-<input
-type="text"
-placeholder="Telefon">
-
-<input
-type="text"
-placeholder="Adresa">
-
-<textarea
-placeholder="Poznámka">
-</textarea>
-
-<div class="payment-row">
-
-<button>
-💳 Karta
-</button>
-
-<button>
-💵 Hotově
-</button>
-
-</div>
-
-<div class="cart-total">
+<h3>
 
 Celkem:
+<span id="cartTotal">
 
-<span id="cart-total">
 0 Kč
+
 </span>
 
-</div>
+</h3>
 
-<button class="checkout-btn">
+<button id="checkoutBtn">
 
-OBJEDNAT
+CHECKOUT
 
 </button>
 

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>BIG BUNS CHECKOUT</title>
+
+<link rel="stylesheet"
+href="../style.css">
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;700;800&display=swap"
+rel="stylesheet">
+
+</head>
+
+<body>
+
+<header class="navbar">
+
+<div class="logo"
+onclick="location.href='../index.html'">
+
+BIG BUNS
+
+</div>
+
+<div class="nav-right">
+
+<div class="delivery-badge">
+
+🔥 CHECKOUT
+
+</div>
+
+</div>
+
+</header>
+
+<section class="checkout-page">
+
+<div class="checkout-left">
+
+<h1>
+CHECKOUT
+</h1>
+
+<div class="checkout-form">
+
+<input
+type="text"
+placeholder="Jméno">
+
+<input
+type="tel"
+placeholder="Telefon">
+
+<input
+type="text"
+placeholder="Adresa">
+
+<select>
+
+<option>
+Platba kartou
+</option>
+
+<option>
+Hotově
+</option>
+
+<option>
+Apple Pay
+</option>
+
+<option>
+Google Pay
+</option>
+
+</select>
+
+<select>
+
+<option>
+Rozvoz
+</option>
+
+<option>
+Osobní odběr
+</option>
+
+</select>
+
+<textarea
+placeholder="Poznámka k objednávce">
+</textarea>
+
+<button class="checkout-btn">
+
+DOKONČIT OBJEDNÁVKU
+
+</button>
+
+</div>
+
+</div>
+
+<div class="checkout-right">
+
+<div class="summary-card">
+
+<h2>
+Tvoje objednávka
+</h2>
+
+<div id="checkoutItems">
+
+</div>
+
+<div class="checkout-total">
+
+<span>
+Celkem
+</span>
+
+<b id="checkoutTotal">
+
+0 Kč
+
+</b>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<script>
+
+const cart =
+JSON.parse(localStorage.getItem("bigbuns-cart")) || [];
+
+const container =
+document.getElementById("checkoutItems");
+
+const total =
+document.getElementById("checkoutTotal");
+
+let totalPrice = 0;
+
+cart.forEach(item=>{
+
+totalPrice += item.price;
+
+container.innerHTML += `
+
+<div class="checkout-item">
+
+<div>
+
+<h4>${item.name}</h4>
+
+<p>${item.price} Kč</p>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+total.innerText =
+totalPrice + " Kč";
+
+</script>
+
+</body>
+</html>

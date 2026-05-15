@@ -369,3 +369,22 @@ document
 /* START */
 
 renderCategory("burgers");
+
+const checkoutBtn =
+document.getElementById("checkoutBtn");
+
+if(checkoutBtn){
+
+checkoutBtn.onclick=()=>{
+
+localStorage.setItem(
+"bigbuns-cart",
+JSON.stringify(cart)
+);
+
+location.href=
+"checkout.html";
+
+};
+
+}
