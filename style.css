@@ -2449,3 +2449,215 @@ width:100%;
 }
 
 }
+/* ========================================= */
+/* DELIVERY PAGE */
+/* ========================================= */
+
+.delivery-hero{
+
+padding-top:170px;
+padding-bottom:70px;
+
+text-align:center;
+
+}
+
+.delivery-hero h1{
+
+font-family:'Anton',sans-serif;
+
+font-size:120px;
+
+letter-spacing:4px;
+
+}
+
+.delivery-hero p{
+
+font-size:22px;
+
+color:#cfcfcf;
+
+margin-top:10px;
+
+}
+
+/* DELIVERY GRID */
+
+.delivery-grid{
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fit,minmax(320px,1fr));
+
+gap:32px;
+
+padding:0 24px 70px;
+
+}
+
+.delivery-card{
+
+background:#111;
+
+padding:40px;
+
+border-radius:34px;
+
+border:
+1px solid rgba(255,255,255,.06);
+
+text-align:center;
+
+transition:.35s;
+
+}
+
+.delivery-card:hover{
+
+transform:translateY(-8px);
+
+box-shadow:
+0 0 50px rgba(255,90,0,.12);
+
+}
+
+.delivery-card img{
+
+width:90px;
+height:90px;
+
+object-fit:contain;
+
+margin-bottom:26px;
+
+background:white;
+
+padding:12px;
+
+border-radius:22px;
+
+}
+
+.delivery-card h3{
+
+font-size:42px;
+
+margin-bottom:16px;
+
+}
+
+.delivery-card p{
+
+font-size:18px;
+
+line-height:1.7;
+
+color:#cfcfcf;
+
+margin-bottom:28px;
+
+}
+
+.delivery-card a{
+
+display:inline-flex;
+
+align-items:center;
+justify-content:center;
+
+padding:18px 34px;
+
+background:#ff5a00;
+
+border-radius:18px;
+
+color:white;
+
+text-decoration:none;
+
+font-weight:800;
+
+transition:.35s;
+
+}
+
+.delivery-card a:hover{
+
+transform:translateY(-3px);
+
+box-shadow:
+0 0 35px rgba(255,90,0,.35);
+
+}
+
+/* INFO */
+
+.delivery-info{
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fit,minmax(320px,1fr));
+
+gap:28px;
+
+padding:0 24px 120px;
+
+}
+
+.delivery-info-card{
+
+background:#111;
+
+padding:34px;
+
+border-radius:30px;
+
+border:
+1px solid rgba(255,255,255,.06);
+
+}
+
+.delivery-info-card h2{
+
+font-size:42px;
+
+margin-bottom:18px;
+
+}
+
+.delivery-info-card p{
+
+font-size:18px;
+
+line-height:1.7;
+
+color:#cfcfcf;
+
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+.delivery-hero h1{
+
+font-size:72px;
+
+}
+
+.delivery-card h3{
+
+font-size:34px;
+
+}
+
+.delivery-info-card h2{
+
+font-size:32px;
+
+}
+
+}
