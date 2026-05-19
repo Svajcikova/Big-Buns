@@ -1,234 +1,81 @@
-const menu = {
-
-burgers:[
+const products=[
 
 {
-name:"🥓 Buns & Bacon",
+id:1,
+category:"burgers",
+name:"Buns & Bacon",
 price:203,
-desc:"Chuck roll, slanina, cheddar, rajče, salát.",
-img:"bacon.jpg"
+image:"../assets/bacon.jpg",
+desc:"Chuck roll, slanina, cheddar, rajče, salát."
 },
 
 {
-name:"🔥 Big Buns Inferno",
+id:2,
+category:"burgers",
+name:"Big Buns Inferno",
 price:203,
-desc:"Cheddar, jalapeño, sriracha mayo.",
-img:"inferno.jpg"
+image:"../assets/inferno.jpg",
+desc:"Cheddar, jalapeño, sriracha mayo."
 },
 
 {
-name:"🌱 Green Beast",
-price:191,
-desc:"Halloumi, pesto, garlic dressing.",
-img:"green.jpg"
-}
-
-],
-
-premium:[
-
-{
-name:"🥑 Big Buns Fresh Bite",
-price:239,
-desc:"Mozzarella, avokádo, pesto.",
-img:"fresh.jpg"
-},
-
-{
-name:"💢⚡ Double Trouble",
+id:3,
+category:"premium",
+name:"Double Trouble",
 price:287,
-desc:"2×150g chuck roll, niva, BBQ mayo.",
-img:"double.jpg"
+image:"../assets/double.jpg",
+desc:"2x150g chuck roll, niva, BBQ mayo."
 },
 
 {
-name:"🍔 Buns & Bacon Deluxe",
+id:4,
+category:"premium",
+name:"Black Ember",
 price:275,
-desc:"Brie, dvojitá slanina, onion rings.",
-img:"deluxe.jpg"
-},
-
-{
-name:"⚫ BLACK EMBER",
-price:275,
-desc:"Double smash, smoked cheese, bacon.",
-img:"ember.jpg"
+image:"../assets/ember.jpg",
+desc:"Double smash, smoked cheese, bacon."
 }
 
-],
+];
 
-sides:[
+const grid=document.getElementById("products-grid");
 
-{
-name:"🍟 Hranolky",
-price:71,
-desc:"Křupavé hranolky.",
-img:"hranolky.jpg"
-},
+const cartItems=document.getElementById("cart-items");
 
-{
-name:"🧇 Bramborové mřížky",
-price:71,
-desc:"Extra crispy.",
-img:"mrizky.jpg"
-},
+let cart=[];
 
-{
-name:"🧅 Onion Rings",
-price:95,
-desc:"Pivní těstíčko.",
-img:"krouzky.jpg"
-},
+function renderProducts(category){
 
-{
-name:"🧀 Mozzarella sticks",
-price:95,
-desc:"5 ks mozzarella sticks.",
-img:"stick.jpg"
-},
+grid.innerHTML="";
 
-{
-name:"🧀 Camembert bites",
-price:95,
-desc:"5 ks camembert bites.",
-img:"https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=1200"
-}
+products
+.filter(p=>p.category===category)
+.forEach(product=>{
 
-],
-
-drinks:[
-
-{
-name:"🥤 Coca-Cola",
-price:42,
-desc:"0.33l",
-img:"https://images.unsplash.com/photo-1622483767028-3f66f32aef97?q=80&w=1200"
-},
-
-{
-name:"🥤 Coca-Cola Zero",
-price:42,
-desc:"0.33l",
-img:"https://images.unsplash.com/photo-1581636625402-29b2a704ef13?q=80&w=1200"
-},
-
-{
-name:"🥤 Coca-Cola Cherry",
-price:42,
-desc:"0.33l",
-img:"https://images.unsplash.com/photo-1605548230624-8d2d0419c517?q=80&w=1200"
-},
-
-{
-name:"🥤 Sprite",
-price:42,
-desc:"0.33l",
-img:"https://images.unsplash.com/photo-1624517452488-04869289c4ca?q=80&w=1200"
-},
-
-{
-name:"🥤 Fanta",
-price:42,
-desc:"0.33l",
-img:"https://images.unsplash.com/photo-1624517452488-04869289c4ca?q=80&w=1200"
-},
-
-{
-name:"🥤 Pepsi Zero Cherry",
-price:42,
-desc:"0.33l",
-img:"https://images.unsplash.com/photo-1629203851122-3726ecdf080e?q=80&w=1200"
-}
-
-],
-
-dips:[
-
-{
-name:"🥣 Garlic Dip",
-price:36,
-desc:"Jogurtovo česnekový dip.",
-img:"https://images.unsplash.com/photo-1473093295043-cdd812d0e601?q=80&w=1200"
-},
-
-{
-name:"🌶️ Sriracha Mayo",
-price:36,
-desc:"Domácí sriracha mayo.",
-img:"https://images.unsplash.com/photo-1601050690597-df0568f70950?q=80&w=1200"
-},
-
-{
-name:"🤍 Classic Mayo",
-price:36,
-desc:"Klasická majonéza.",
-img:"https://images.unsplash.com/photo-1528735602780-2552fd46c7af?q=80&w=1200"
-},
-
-{
-name:"🍯 Honey Mustard",
-price:36,
-desc:"Medovo hořčičná omáčka.",
-img:"https://images.unsplash.com/photo-1472476443507-c7a5948772fc?q=80&w=1200"
-},
-
-{
-name:"🍋 Lemon Pepper Mayo",
-price:36,
-desc:"Citronovo pepřová mayo.",
-img:"https://images.unsplash.com/photo-1526318896980-cf78c088247c?q=80&w=1200"
-},
-
-{
-name:"🍖 BBQ Sauce",
-price:36,
-desc:"Domácí BBQ omáčka.",
-img:"https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?q=80&w=1200"
-}
-
-]
-
-};
-
-let cart = [];
-
-/* RENDER */
-
-function renderCategory(category){
-
-const products =
-document.getElementById("products");
-
-products.innerHTML = "";
-
-menu[category].forEach(item=>{
-
-products.innerHTML += `
+grid.innerHTML+=`
 
 <div class="product-card">
 
-<img src="${item.img}">
+<img src="${product.image}">
 
 <div class="product-content">
 
 <h3>
-${item.name}
+${product.name}
 </h3>
 
 <p>
-${item.desc}
+${product.desc}
 </p>
 
 <div class="product-bottom">
 
 <div class="price">
-
-${item.price} Kč
-
+${product.price} Kč
 </div>
 
-<button
-onclick="addToCart('${item.name}', ${item.price})">
+<button class="add-btn"
+onclick="addToCart(${product.id})">
 
 +
 
@@ -246,62 +93,53 @@ onclick="addToCart('${item.name}', ${item.price})">
 
 }
 
-/* ADD */
+function filterProducts(category){
 
-function addToCart(name,price){
+document
+.querySelectorAll(".tabs button")
+.forEach(btn=>btn.classList.remove("active"));
 
-cart.push({
-name,
-price
-});
+event.target.classList.add("active");
+
+renderProducts(category);
+
+}
+
+function addToCart(id){
+
+const product=
+products.find(p=>p.id===id);
+
+cart.push(product);
 
 updateCart();
 
 }
 
-/* UPDATE CART */
-
 function updateCart(){
 
-const cartItems =
-document.getElementById("cartItems");
+document.getElementById("cart-count")
+.innerText=cart.length;
 
-const cartTotal =
-document.getElementById("cartTotal");
+cartItems.innerHTML="";
 
-const cartCount =
-document.getElementById("cartCount");
+let total=0;
 
-cartItems.innerHTML = "";
+cart.forEach(item=>{
 
-let total = 0;
+total+=item.price;
 
-cart.forEach((item,index)=>{
-
-total += item.price;
-
-cartItems.innerHTML += `
+cartItems.innerHTML+=`
 
 <div class="cart-item">
 
 <div>
-
-<h4>
 ${item.name}
-</h4>
-
-<p>
-${item.price} Kč
-</p>
-
 </div>
 
-<button
-onclick="removeItem(${index})">
-
-✕
-
-</button>
+<div>
+${item.price} Kč
+</div>
 
 </div>
 
@@ -309,51 +147,17 @@ onclick="removeItem(${index})">
 
 });
 
-cartTotal.innerText =
-total + " Kč";
-
-cartCount.innerText =
-cart.length;
+document.getElementById("cart-total")
+.innerText=total+" Kč";
 
 }
-
-/* REMOVE */
-
-function removeItem(index){
-
-cart.splice(index,1);
-
-updateCart();
-
-}
-
-/* TOGGLE */
 
 function toggleCart(){
 
 document
-.getElementById("cartPanel")
-.classList
-.toggle("active");
+.getElementById("cart-panel")
+.classList.toggle("active");
 
 }
 
-/* CHECKOUT */
-
-document
-.getElementById("checkoutBtn")
-.onclick = ()=>{
-
-localStorage.setItem(
-"bigbuns-cart",
-JSON.stringify(cart)
-);
-
-location.href =
-"checkout.html";
-
-};
-
-/* START */
-
-renderCategory("burgers");
+renderProducts("burgers");
