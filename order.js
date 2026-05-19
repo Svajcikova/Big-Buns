@@ -1,4 +1,4 @@
-const products=[
+const products = [
 
 {
 id:1,
@@ -34,25 +34,57 @@ name:"Black Ember",
 price:275,
 image:"../assets/ember.jpg",
 desc:"Double smash, smoked cheese, bacon."
+},
+
+{
+id:5,
+category:"sides",
+name:"Hranolky",
+price:71,
+image:"../assets/fries.jpg",
+desc:"Křupavé hranolky."
+},
+
+{
+id:6,
+category:"drinks",
+name:"Coca Cola",
+price:42,
+image:"../assets/coke.jpg",
+desc:"0.3l"
+},
+
+{
+id:7,
+category:"dips",
+name:"BBQ Omáčka",
+price:36,
+image:"../assets/bbq.jpg",
+desc:"Domácí BBQ."
 }
 
 ];
 
-const grid=document.getElementById("products-grid");
+const grid =
+document.getElementById("products-grid");
 
-const cartItems=document.getElementById("cart-items");
+const cartItems =
+document.getElementById("cart-items");
 
-let cart=[];
+let cart = [];
 
 function renderProducts(category){
 
-grid.innerHTML="";
+grid.innerHTML = "";
 
-products
-.filter(p=>p.category===category)
-.forEach(product=>{
+const filtered =
+products.filter(
+p => p.category === category
+);
 
-grid.innerHTML+=`
+filtered.forEach(product=>{
+
+grid.innerHTML += `
 
 <div class="product-card">
 
@@ -93,13 +125,17 @@ onclick="addToCart(${product.id})">
 
 }
 
-function filterProducts(category){
+function filterProducts(category,btn){
 
 document
 .querySelectorAll(".tabs button")
-.forEach(btn=>btn.classList.remove("active"));
+.forEach(button=>{
 
-event.target.classList.add("active");
+button.classList.remove("active");
+
+});
+
+btn.classList.add("active");
 
 renderProducts(category);
 
@@ -107,7 +143,7 @@ renderProducts(category);
 
 function addToCart(id){
 
-const product=
+const product =
 products.find(p=>p.id===id);
 
 cart.push(product);
@@ -118,18 +154,15 @@ updateCart();
 
 function updateCart(){
 
-document.getElementById("cart-count")
-.innerText=cart.length;
+cartItems.innerHTML = "";
 
-cartItems.innerHTML="";
-
-let total=0;
+let total = 0;
 
 cart.forEach(item=>{
 
-total+=item.price;
+total += item.price;
 
-cartItems.innerHTML+=`
+cartItems.innerHTML += `
 
 <div class="cart-item">
 
@@ -147,8 +180,13 @@ ${item.price} Kč
 
 });
 
-document.getElementById("cart-total")
-.innerText=total+" Kč";
+document
+.getElementById("cart-total")
+.innerText = total + " Kč";
+
+document
+.getElementById("cart-count")
+.innerText = cart.length;
 
 }
 
