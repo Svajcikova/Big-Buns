@@ -153,25 +153,20 @@ updateCart();
 }
 
 function updateCart(){
-
-cartItems.innerHTML = "";
-
-let total = 0;
-
-cart.forEach(item=>{
-
-total += item.price;
-
 cartItems.innerHTML += `
 
 <div class="cart-item">
 
 <div>
+
+<div class="cart-item-name">
 ${item.name}
 </div>
 
-<div>
+<div class="cart-item-price">
 ${item.price} Kč
+</div>
+
 </div>
 
 </div>
