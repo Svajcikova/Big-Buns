@@ -6,21 +6,21 @@ burgers:[
 name:"🥓 Buns & Bacon",
 price:203,
 desc:"Chuck roll, slanina, cheddar, rajče, salát.",
-img:"https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1200"
+img:"bacon.jpg"
 },
 
 {
 name:"🔥 Big Buns Inferno",
 price:203,
 desc:"Cheddar, jalapeño, sriracha mayo.",
-img:"https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=1200"
+img:"inferno.jpg"
 },
 
 {
 name:"🌱 Green Beast",
 price:191,
 desc:"Halloumi, pesto, garlic dressing.",
-img:"https://images.unsplash.com/photo-1520072959219-c595dc870360?q=80&w=1200"
+img:"green.jpg"
 }
 
 ],
@@ -31,28 +31,28 @@ premium:[
 name:"🥑 Big Buns Fresh Bite",
 price:239,
 desc:"Mozzarella, avokádo, pesto.",
-img:"https://images.unsplash.com/photo-1553979459-d2229ba7433b?q=80&w=1200"
+img:"fresh.jpg"
 },
 
 {
 name:"💢⚡ Double Trouble",
 price:287,
 desc:"2×150g chuck roll, niva, BBQ mayo.",
-img:"https://images.unsplash.com/photo-1571091718767-18b5b1457add?q=80&w=1200"
+img:"double.jpg"
 },
 
 {
 name:"🍔 Buns & Bacon Deluxe",
 price:275,
 desc:"Brie, dvojitá slanina, onion rings.",
-img:"https://images.unsplash.com/photo-1586816001966-79b736744398?q=80&w=1200"
+img:"deluxe.jpg"
 },
 
 {
 name:"⚫ BLACK EMBER",
 price:275,
 desc:"Double smash, smoked cheese, bacon.",
-img:"https://images.unsplash.com/photo-1561758033-d89a9ad46330?q=80&w=1200"
+img:"ember.jpg"
 }
 
 ],
@@ -63,28 +63,28 @@ sides:[
 name:"🍟 Hranolky",
 price:71,
 desc:"Křupavé hranolky.",
-img:"https://images.unsplash.com/photo-1573080496219-bb080dd4f877?q=80&w=1200"
+img:"hranolky.jpg"
 },
 
 {
 name:"🧇 Bramborové mřížky",
 price:71,
 desc:"Extra crispy.",
-img:"https://images.unsplash.com/photo-1630384060421-cb20d0e0649d?q=80&w=1200"
+img:"mrizky.jpg"
 },
 
 {
 name:"🧅 Onion Rings",
 price:95,
 desc:"Pivní těstíčko.",
-img:"https://images.unsplash.com/photo-1639024471283-03518883512d?q=80&w=1200"
+img:"krouzky.jpg"
 },
 
 {
 name:"🧀 Mozzarella sticks",
 price:95,
 desc:"5 ks mozzarella sticks.",
-img:"https://images.unsplash.com/photo-1548340748-6d2b7d7da280?q=80&w=1200"
+img:"stick.jpg"
 },
 
 {
@@ -102,7 +102,7 @@ drinks:[
 name:"🥤 Coca-Cola",
 price:42,
 desc:"0.33l",
-img:"https://images.unsplash.com/photo-1629203851122-3726ecdf080e?q=80&w=1200"
+img:"https://images.unsplash.com/photo-1622483767028-3f66f32aef97?q=80&w=1200"
 },
 
 {
@@ -137,7 +137,7 @@ img:"https://images.unsplash.com/photo-1624517452488-04869289c4ca?q=80&w=1200"
 name:"🥤 Pepsi Zero Cherry",
 price:42,
 desc:"0.33l",
-img:"https://images.unsplash.com/photo-1622483767028-3f66f32aef97?q=80&w=1200"
+img:"https://images.unsplash.com/photo-1629203851122-3726ecdf080e?q=80&w=1200"
 }
 
 ],
